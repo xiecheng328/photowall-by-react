@@ -14,6 +14,7 @@ html, body{
 	position: relative;
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
 }
 .img-sec{
 	position: relative;
@@ -26,6 +27,44 @@ html, body{
 	left: 0;
 	bottom: 30px;
 	/*z-index: 101;*/
-
 }
+figure{
+	background: #fff;
+}
+.img-figure{
+	width: 320px;
+	height: 360px;
+	padding: 40px;
+
+	box-sizing: border-box;
+
+	position: absolute;
+}
+figcaption{
+	text-align: center;	
+}
+.img-title{
+	margin-top: 20px;
+	color: #a7a0a2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
