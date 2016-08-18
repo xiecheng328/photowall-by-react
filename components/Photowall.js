@@ -68,6 +68,37 @@
     });
 
     /*
+        创建控制组件
+    */
+    var ControllerUnit = React.createClass({
+        handleClick : function(e){
+            //如果点击是当前选中的按钮，则翻转图片，否则将对应的图片居中
+            if(this.props.arrange.isCenter){
+                this.props.inverse();
+            }else{
+                this.props.center();
+            }
+
+            e.stopPropagation();
+            e.preventDefault();
+        },
+        render : function(){
+            var controllerUnitClassName = 'controller-unit';
+
+            if(this.props.arrange.isCenter){
+                controllerUnitClassName += ' is-center';
+                if(this.props.arrange.isInverse){
+                    controllerUnitClassName += ' is-inverse';
+                }
+            }
+            return (
+                <span className={controllerUnitClassName} onClick={this.handleClick} />
+
+            );
+        }
+    });
+
+    /*
         创建舞台组件
     */
     var Photowall = React.createClass({
@@ -230,10 +261,10 @@
             this.Constant.hPosRange.y[1] = stageH - halfImgH;
 
             //计算上侧区域图片排布位置的取值范围
-            this.Constant.vPosRange.topY[0] = -halfImgH;
-            this.Constant.vPosRange.topY[1] = halfStageH - halfImgH * 3;
-            this.Constant.vPosRange.x[0] = halfStageW - imgW;
-            this.Constant.vPosRange.x[1] = halfStageW;
+            // this.Constant.vPosRange.topY[0] = -halfImgH;
+            // this.Constant.vPosRange.topY[1] = halfStageH - halfImgH * 3;
+            // this.Constant.vPosRange.x[0] = halfStageW - imgW;
+            // this.Constant.vPosRange.x[1] = halfStageW;
 
             this.rearange(0);
         },
@@ -255,6 +286,9 @@
                 }
                 imgFigures.push(<ImgFigure data={value} key={index} ref={'imgFigure' + index} 
                     arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} 
+                    center={this.center(index)}/>);
+
+                controllerUnits.push(<ControllerUnit key={index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} 
                     center={this.center(index)}/>);
             }.bind(this));
 
